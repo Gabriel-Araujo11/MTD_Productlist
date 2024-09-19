@@ -1,20 +1,19 @@
-import { ChakraProvider } from "@chakra-ui/react";
-import type { Metadata } from "next";
+"use client";
 
-export const metadata: Metadata = {
-  title: "MTD. Product List",
-  description: "Best ecommerce in Latin America. MTD quality!",
-};
+import { ChakraProvider } from "@chakra-ui/react";
+import { CartProvider } from "@/context/useContext";
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
       <body>
-        <ChakraProvider>{children}</ChakraProvider>
+        <ChakraProvider>
+          <CartProvider>{children}</CartProvider>
+        </ChakraProvider>
       </body>
     </html>
   );

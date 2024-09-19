@@ -1,6 +1,6 @@
 import { Box, Button, Flex, Text } from "@chakra-ui/react";
 
-export default function ProductCart() {
+export default function ProductCard() {
   return (
     <Flex wrap="wrap" gap={6} justify={{ base: "center", md: "flex-start" }}>
       <Box

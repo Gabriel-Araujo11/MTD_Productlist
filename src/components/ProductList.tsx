@@ -1,5 +1,5 @@
 import { Box, Flex, Heading } from "@chakra-ui/react";
-import ProductCart from "./ProductCart";
+import ProductCard from "./ProductCard";
 import Cart from "./Cart";
 
 export default function ProductList() {
@@ -13,7 +13,7 @@ export default function ProductList() {
         <Heading mb={6} fontSize={{ base: "2xl", md: "3xl" }}>
           Desserts
         </Heading>
-        <ProductCart />
+        <ProductCard />
         <Cart />
       </Box>
     </Flex>
