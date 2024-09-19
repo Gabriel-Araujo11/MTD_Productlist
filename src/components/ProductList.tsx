@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Flex } from "@chakra-ui/react";
+import { Heading, SimpleGrid, Box, Flex } from "@chakra-ui/react";
 import ProductCard from "./ProductCard";
 import { Product } from "@/utils/types";
 
@@ -16,11 +16,19 @@ const ProductList = () => {
   }, []);
 
   return (
-    <Flex wrap="wrap" gap={6} justify={{ base: "center", md: "flex-start" }}>
-      {products.map((product) => (
-        <ProductCard key={product.name} product={product} />
-      ))}
-    </Flex>
+    <Box paddingX={{ base: 4, md: 8 }} mt={5}>
+      <Flex justifyContent="space-between" alignItems="center">
+        <Heading as="h2" size="lg">
+          Desserts
+        </Heading>
+      </Flex>
+
+      <SimpleGrid columns={{ base: 1, sm: 2, md: 3 }}>
+        {products.map((product) => (
+          <ProductCard key={product.name} product={product} />
+        ))}
+      </SimpleGrid>
+    </Box>
   );
 };
 
