@@ -1,21 +1,27 @@
-import { Box, Flex, Heading } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
+import { Flex } from "@chakra-ui/react";
 import ProductCard from "./ProductCard";
-import Cart from "./Cart";
+import { Product } from "@/utils/types";
 
-export default function ProductList() {
+const ProductList = () => {
+  const [products, setProducts] = useState<Product[]>([]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const res = await fetch("/data/data.json");
+      const data = await res.json();
+      setProducts(data);
+    };
+    fetchProducts();
+  }, []);
+
   return (
-    <Flex
-      direction={{ base: "column", md: "row" }}
-      p={4}
-      justify="space-between"
-    >
-      <Box flex="3">
-        <Heading mb={6} fontSize={{ base: "2xl", md: "3xl" }}>
-          Desserts
-        </Heading>
-        <ProductCard />
-        <Cart />
-      </Box>
+    <Flex wrap="wrap" gap={6} justify={{ base: "center", md: "flex-start" }}>
+      {products.map((product) => (
+        <ProductCard key={product.name} product={product} />
+      ))}
     </Flex>
   );
-}
+};
+
+export default ProductList;

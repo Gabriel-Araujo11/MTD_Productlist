@@ -10,7 +10,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
+      <body style={{ backgroundColor: "#fcf8f5" }}>
         <ChakraProvider>
           <CartProvider>{children}</CartProvider>
         </ChakraProvider>
