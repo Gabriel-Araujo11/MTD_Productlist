@@ -33,7 +33,7 @@ export function CartProvider({ children }: CartProviderProps) {
   };
 
   const totalPrice = cartItems.reduce(
-    (total, item) => total + item.price * item.quantity,
+    (total, item) => total + (item.price || 0) * (item.quantity || 0),
     0
   );
 

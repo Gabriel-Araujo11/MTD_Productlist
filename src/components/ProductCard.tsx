@@ -16,13 +16,14 @@ interface ProductCardProps {
   product: Product;
 }
 
-const ProductCard = ({ product }: ProductCardProps) => {
+export default function ProductCard({ product }: ProductCardProps) {
   const { addToCart } = useCart();
   const [isSelected, setIsSelected] = useState(false);
   const [quantity, setQuantity] = useState(1);
 
   const handleAddToCart = () => {
-    addToCart(product);
+    const productWithQuantity = { ...product, quantity };
+    addToCart(productWithQuantity);
     setIsSelected(true);
   };
 
@@ -138,6 +139,4 @@ const ProductCard = ({ product }: ProductCardProps) => {
       </Text>
     </Flex>
   );
-};
-
-export default ProductCard;
+}
