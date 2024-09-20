@@ -1,31 +1,46 @@
-import { Product } from "@/utils/types";
+import { CartContextType, Product } from "@/utils/types";
 import { createContext, useState, ReactNode } from "react";
-
-interface CartContextType {
-  cartItems: Product[];
-  addToCart: (product: Product) => void;
-  removeFromCart: (productName: string) => void;
-}
 
 export const CartContext = createContext<CartContextType | undefined>(
   undefined
 );
 
-export function CartProvider({ children }: { children: ReactNode }) {
+interface CartProviderProps {
+  children: ReactNode;
+}
+
+export function CartProvider({ children }: CartProviderProps) {
   const [cartItems, setCartItems] = useState<Product[]>([]);
 
   const addToCart = (product: Product) => {
-    setCartItems((prevItem) => [...prevItem, product]);
+    setCartItems((prevItems) => {
+      const existingItem = prevItems.find((item) => item.name === product.name);
+      if (existingItem) {
+        return prevItems.map((item) =>
+          item.name === product.name
+            ? { ...item, quantity: item.quantity + product.quantity }
+            : item
+        );
+      }
+      return [...prevItems, product];
+    });
   };
 
   const removeFromCart = (productName: string) => {
-    setCartItems((prevItem) =>
-      prevItem.filter((item) => item.name !== productName)
+    setCartItems((prevItems) =>
+      prevItems.filter((item) => item.name !== productName)
     );
   };
 
+  const totalPrice = cartItems.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0
+  );
+
   return (
-    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart }}>
+    <CartContext.Provider
+      value={{ cartItems, addToCart, removeFromCart, totalPrice }}
+    >
       {children}
     </CartContext.Provider>
   );
