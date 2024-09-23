@@ -27,16 +27,15 @@ export default function ProductCard({ product }: ProductCardProps) {
     setIsSelected(true);
   };
 
-  // TODO: fix cart bug
-  const handleQuantityIncrease = (delta: number) => {
-    const newQuantity = Math.max(quantity + delta, 1);
+  const handleQuantityIncrease = () => {
+    const newQuantity = quantity + 1;
     setQuantity(newQuantity);
     const productWithUpdatedQuantity = { ...product, quantity: newQuantity };
     addToCart(productWithUpdatedQuantity);
   };
 
-  const handleQuantityDecrease = (delta: number) => {
-    const newQuantity = Math.min(quantity - delta, 1);
+  const handleQuantityDecrease = () => {
+    const newQuantity = Math.max(quantity - 1, 1);
     setQuantity(newQuantity);
     const productWithUpdatedQuantity = { ...product, quantity: newQuantity };
     addToCart(productWithUpdatedQuantity);
@@ -118,7 +117,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                   />
                 }
                 colorScheme="#c83b0e"
-                onClick={() => handleQuantityDecrease(-1)}
+                onClick={handleQuantityDecrease}
               />
               <Text fontSize="lg" color="white">
                 {quantity}
@@ -134,7 +133,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                   />
                 }
                 colorScheme="#c83b0e"
-                onClick={() => handleQuantityIncrease(1)}
+                onClick={handleQuantityIncrease}
               />
             </HStack>
           )}

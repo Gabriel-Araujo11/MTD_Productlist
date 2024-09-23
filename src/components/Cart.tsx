@@ -1,9 +1,17 @@
-import { Box, Heading, Text, Flex, IconButton } from "@chakra-ui/react";
+import {
+  Box,
+  Heading,
+  Text,
+  Flex,
+  IconButton,
+  HStack,
+  Button,
+} from "@chakra-ui/react";
 import { useCart } from "@/hooks/useCart";
 import Image from "next/image";
 
 export default function Cart() {
-  const { cartItems, removeFromCart, totalPrice } = useCart();
+  const { cartItems, removeFromCart, totalPrice, resetCart } = useCart();
 
   return (
     <Box
@@ -75,9 +83,36 @@ export default function Cart() {
               />
             </Flex>
           ))}
-          <Heading size="md" mt={4} textAlign="right" color="gray.800">
-            Total: ${totalPrice.toFixed(2)}
-          </Heading>
+          <HStack justifyContent="space-between" mt={10}>
+            <Text size="md" color="gray.800">
+              Order Total:
+            </Text>
+            <Text fontWeight="bold">${totalPrice.toFixed(2)}</Text>
+          </HStack>
+          <HStack
+            mt={7}
+            mb={3}
+            backgroundColor="#e2e2e2"
+            p={4}
+            borderRadius="10px"
+          >
+            <Text fontSize="16px">
+              This is a <strong>carbon-neutral</strong> delivery
+            </Text>
+          </HStack>
+          <Button justifyContent="right" onClick={resetCart}>
+            Reset Cart
+          </Button>
+          <Button
+            width="100%"
+            top="20px"
+            backgroundColor="#c83b0e"
+            color="white"
+            borderRadius="20px"
+            _hover="black"
+          >
+            Confirm Order
+          </Button>
         </>
       )}
     </Box>

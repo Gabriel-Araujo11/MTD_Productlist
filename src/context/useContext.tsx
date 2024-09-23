@@ -18,7 +18,7 @@ export function CartProvider({ children }: CartProviderProps) {
       if (existingItem) {
         return prevItems.map((item) =>
           item.name === product.name
-            ? { ...item, quantity: item.quantity + product.quantity }
+            ? { ...item, quantity: product.quantity }
             : item
         );
       }
@@ -37,9 +37,19 @@ export function CartProvider({ children }: CartProviderProps) {
     0
   );
 
+  const resetCart = () => {
+    setCartItems([]);
+  };
+
   return (
     <CartContext.Provider
-      value={{ cartItems, addToCart, removeFromCart, totalPrice }}
+      value={{
+        cartItems,
+        addToCart,
+        removeFromCart,
+        totalPrice,
+        resetCart,
+      }}
     >
       {children}
     </CartContext.Provider>

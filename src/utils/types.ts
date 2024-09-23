@@ -15,6 +15,7 @@ export interface CartContextType {
   addToCart: (product: Product) => void;
   removeFromCart: (productName: string) => void;
   totalPrice: number;
+  resetCart: () => void;
 }
 export interface CartItem {
   name: string;
