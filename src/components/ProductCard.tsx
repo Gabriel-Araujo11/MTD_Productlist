@@ -27,18 +27,28 @@ export default function ProductCard({ product }: ProductCardProps) {
     setIsSelected(true);
   };
 
-  const handleQuantityChange = (delta: number) => {
-    setQuantity((prevQuantity) => Math.max(prevQuantity + delta, 1));
+  const handleQuantityIncrease = (delta: number) => {
+    const newQuantity = Math.max(quantity + delta, 1);
+    setQuantity(newQuantity);
+    const productWithUpdatedQuantity = { ...product, quantity: newQuantity };
+    addToCart(productWithUpdatedQuantity); // Atualiza o carrinho
+  };
+
+  const handleQuantityDecrease = (delta: number) => {
+    const newQuantity = Math.min(quantity - delta, 1);
+    setQuantity(newQuantity);
+    const productWithUpdatedQuantity = { ...product, quantity: newQuantity };
+    addToCart(productWithUpdatedQuantity); // Atualiza o carrinho
   };
 
   return (
     <Flex
       direction="column"
       mt={5}
-      mb={5}
+      mb={-20}
       textAlign="center"
-      width={{ base: "100%", md: "280px" }}
-      mx={{ base: 2, md: 2 }}
+      width={{ base: "100%", md: "260px" }}
+      mx="auto"
     >
       <Box
         p={4}
@@ -61,68 +71,75 @@ export default function ProductCard({ product }: ProductCardProps) {
           objectFit="cover"
           mb={4}
         />
-        {!isSelected ? (
-          <Button
-            leftIcon={
-              <Image
-                src="/assets/images/icon-add-to-cart.svg"
-                alt="Add to Cart Icon"
-                width={20}
-                height={20}
+        <Box
+          height="50px"
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          mt={-6}
+        >
+          {!isSelected ? (
+            <Button
+              leftIcon={
+                <Image
+                  src="/assets/images/icon-add-to-cart.svg"
+                  alt="Add to Cart Icon"
+                  width={20}
+                  height={20}
+                />
+              }
+              colorScheme="white"
+              size={{ base: "sm", md: "md" }}
+              onClick={handleAddToCart}
+              color="black"
+              borderRadius="25px"
+              background="white"
+              border="2px solid #cbbcba"
+              width="70%"
+            >
+              Add to Cart
+            </Button>
+          ) : (
+            <HStack
+              width="70%"
+              justifyContent="center"
+              backgroundColor="#c83b0e"
+              borderRadius="25px"
+            >
+              <IconButton
+                aria-label="Decrease quantity"
+                icon={
+                  <Image
+                    src="/assets/images/icon-decrement-quantity.svg"
+                    alt="Decrease Quantity Icon"
+                    width={10}
+                    height={10}
+                  />
+                }
+                colorScheme="#c83b0e"
+                onClick={() => handleQuantityDecrease(-1)}
               />
-            }
-            colorScheme="white"
-            size={{ base: "sm", md: "md" }}
-            onClick={handleAddToCart}
-            color="black"
-            borderRadius="25px"
-            bottom="10px"
-            background="white"
-            border="2px solid #cbbcba"
-            width="70%"
-          >
-            Add to Cart
-          </Button>
-        ) : (
-          <HStack
-            width="70%"
-            justifyContent="center"
-            backgroundColor="#c83b0e"
-            position="absolute"
-            style={{ borderRadius: "25px" }}
-          >
-            <IconButton
-              aria-label="Decrease quantity"
-              icon={
-                <Image
-                  src="/assets/images/icon-decrement-quantity.svg"
-                  alt="Decrease Quantity Icon"
-                  width={10}
-                  height={10}
-                />
-              }
-              colorScheme="#c83b0e"
-              onClick={() => handleQuantityChange(-1)}
-            />
-            <Text fontSize="lg" color="white">
-              {quantity}
-            </Text>
-            <IconButton
-              aria-label="Increase quantity"
-              icon={
-                <Image
-                  src="/assets/images/icon-increment-quantity.svg"
-                  alt="Increase Quantity Icon"
-                  width={10}
-                  height={10}
-                />
-              }
-              colorScheme="#c83b0e"
-              onClick={() => handleQuantityChange(1)}
-            />
-          </HStack>
-        )}
+              <Text fontSize="lg" color="white">
+                {quantity}
+              </Text>
+              <IconButton
+                aria-label="Increase quantity"
+                icon={
+                  <Image
+                    src="/assets/images/icon-increment-quantity.svg"
+                    alt="Increase Quantity Icon"
+                    width={10}
+                    height={10}
+                  />
+                }
+                colorScheme="#c83b0e"
+                onClick={() => handleQuantityIncrease(1)}
+              />
+            </HStack>
+          )}
+        </Box>
       </Box>
+
       <Text
         color="gray.600"
         fontSize={{ base: "md", md: "lg" }}

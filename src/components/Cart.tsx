@@ -6,7 +6,14 @@ export default function Cart() {
   const { cartItems, removeFromCart, totalPrice } = useCart();
 
   return (
-    <Box p={4} bg="gray.50" borderRadius="lg">
+    <Box
+      p={10}
+      bg="gray.50"
+      borderRadius="lg"
+      mx="auto"
+      width="100%"
+      maxWidth="500px"
+    >
       <Heading size="lg" mb={4} color="#c83b0e">
         Your Cart ({cartItems.length})
       </Heading>
@@ -29,7 +36,7 @@ export default function Cart() {
         <>
           {cartItems.map((item, index) => (
             <Flex key={index} justify="space-between" mb={2}>
-              <Text>
+              <Text fontSize="14px">
                 {item.name} x {item.quantity}
               </Text>
               <Flex align="center">

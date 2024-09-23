@@ -23,7 +23,7 @@ const ProductList = () => {
         </Heading>
       </Flex>
 
-      <SimpleGrid columns={{ base: 1, sm: 2, md: 3 }}>
+      <SimpleGrid columns={{ base: 1, sm: 2, md: 3 }} gap={20}>
         {products.map((product) => (
           <ProductCard key={product.name} product={product} />
         ))}
