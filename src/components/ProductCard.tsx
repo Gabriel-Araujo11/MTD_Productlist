@@ -27,18 +27,19 @@ export default function ProductCard({ product }: ProductCardProps) {
     setIsSelected(true);
   };
 
+  // TODO: fix cart bug
   const handleQuantityIncrease = (delta: number) => {
     const newQuantity = Math.max(quantity + delta, 1);
     setQuantity(newQuantity);
     const productWithUpdatedQuantity = { ...product, quantity: newQuantity };
-    addToCart(productWithUpdatedQuantity); // Atualiza o carrinho
+    addToCart(productWithUpdatedQuantity);
   };
 
   const handleQuantityDecrease = (delta: number) => {
     const newQuantity = Math.min(quantity - delta, 1);
     setQuantity(newQuantity);
     const productWithUpdatedQuantity = { ...product, quantity: newQuantity };
-    addToCart(productWithUpdatedQuantity); // Atualiza o carrinho
+    addToCart(productWithUpdatedQuantity);
   };
 
   return (
@@ -139,21 +140,22 @@ export default function ProductCard({ product }: ProductCardProps) {
           )}
         </Box>
       </Box>
-
-      <Text
-        color="gray.600"
-        fontSize={{ base: "md", md: "lg" }}
-        mt={4}
-        paddingTop="20px"
-      >
-        {product.category}
-      </Text>
-      <Text fontWeight="bold" fontSize={{ base: "md", md: "lg" }}>
-        {product.name}
-      </Text>
-      <Text mb={4} fontSize={{ base: "sm", md: "md" }} color="orange.600">
-        ${product.price.toFixed(2)}
-      </Text>
+      <Box textAlign="left">
+        <Text
+          color="gray.600"
+          fontSize={{ base: "md", md: "lg" }}
+          mt={4}
+          paddingTop="20px"
+        >
+          {product.category}
+        </Text>
+        <Text fontWeight="bold" fontSize={{ base: "md", md: "lg" }}>
+          {product.name}
+        </Text>
+        <Text mb={4} fontSize={{ base: "sm", md: "md" }} color="orange.600">
+          ${product.price.toFixed(2)}
+        </Text>
+      </Box>
     </Flex>
   );
 }

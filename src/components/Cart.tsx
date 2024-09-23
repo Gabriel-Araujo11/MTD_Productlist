@@ -35,31 +35,47 @@ export default function Cart() {
       ) : (
         <>
           {cartItems.map((item, index) => (
-            <Flex key={index} justify="space-between" mb={2}>
-              <Text fontSize="14px">
-                {item.name} x {item.quantity}
-              </Text>
-              <Flex align="center">
-                <Text mr={4}>${(item.price * item.quantity).toFixed(2)}</Text>
-                <IconButton
-                  aria-label="Remove item"
-                  isRound
-                  border="2px solid"
-                  icon={
-                    <Image
-                      src="/assets/images/icon-remove-item.svg"
-                      alt="Remove item"
-                      width={10}
-                      height={10}
-                    />
-                  }
-                  size="sm"
-                  onClick={() => removeFromCart(item.name)}
-                />
+            <Flex
+              key={index}
+              justify="space-between"
+              align="center"
+              mb={5}
+              borderBottom="1px solid #e2e2e2"
+              pb={4}
+            >
+              <Flex direction="column">
+                <Text fontSize="md" fontWeight="bold">
+                  {item.name}
+                </Text>
+                <Flex align="center">
+                  <Text fontSize="sm" color="red.500" fontWeight="bold" mr={1}>
+                    {item.quantity}x
+                  </Text>
+                  <Text fontSize="sm" color="gray.500" mr={1}>
+                    @ ${item.price.toFixed(2)}
+                  </Text>
+                  <Text fontSize="sm" fontWeight="bold">
+                    ${item.price * item.quantity}
+                  </Text>
+                </Flex>
               </Flex>
+              <IconButton
+                aria-label="Remove item"
+                isRound
+                icon={
+                  <Image
+                    src="/assets/images/icon-remove-item.svg"
+                    alt="Remove item"
+                    width={16}
+                    height={16}
+                  />
+                }
+                size="md"
+                onClick={() => removeFromCart(item.name)}
+              />
             </Flex>
           ))}
-          <Heading size="md" mt={4}>
+          <Heading size="md" mt={4} textAlign="right" color="gray.800">
             Total: ${totalPrice.toFixed(2)}
           </Heading>
         </>

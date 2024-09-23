@@ -8,16 +8,18 @@ export default function Home() {
   return (
     <Flex
       direction={{ base: "column", md: "row" }}
-      p={5}
       justify="space-between"
-      maxWidth="1200px"
+      p={20}
+      maxWidth="75vw"
       mx="auto"
       width="100%"
+      mb={20}
     >
-      <Box flex="3">
+      <Box flex="3" mr={{ base: 0, md: 5 }}>
         <ProductList />
       </Box>
-      <Box flex="1" ml={{ base: 0, md: 16 }} mt={{ base: 8, md: 10 }}>
+
+      <Box flex="1" mt={{ base: 8, md: 10 }}>
         <Cart />
       </Box>
     </Flex>
