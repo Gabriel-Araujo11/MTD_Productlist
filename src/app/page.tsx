@@ -1,4 +1,5 @@
 "use client";
+//DONE ✅: ThankYou, mtd!
 
 import Cart from "@/components/Cart";
 import ProductList from "@/components/ProductList";
