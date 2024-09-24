@@ -16,8 +16,6 @@ interface ProductCardProps {
   product: Product;
 }
 
-//TODO: Resolver problema de typescript no isItemSelected
-
 export default function ProductCard({ product }: ProductCardProps) {
   const { addToCart, isItemSelected } = useCart();
   const [quantity, setQuantity] = useState(1);

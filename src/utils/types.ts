@@ -16,7 +16,7 @@ export interface CartContextType {
   removeFromCart: (productName: string) => void;
   totalPrice: number;
   resetCart: () => void;
-  isItemSelected: (name: string) => void;
+  isItemSelected: (name: string) => boolean;
 }
 export interface CartItem {
   name: string;
