@@ -13,6 +13,7 @@ import {
   VStack,
   HStack,
   Divider,
+  Flex,
 } from "@chakra-ui/react";
 import { useCart } from "@/hooks/useCart";
 import { OrderConfirmationModalProps } from "@/utils/types";
@@ -45,7 +46,7 @@ export default function OrderConfirmationModal({
               Order Confirmed
             </Text>
           </HStack>
-          <Text fontSize="sm" color="gray.500">
+          <Text fontSize="sm" color="#c9bfbe">
             We hope you enjoy your food!
           </Text>
         </ModalHeader>
@@ -61,22 +62,34 @@ export default function OrderConfirmationModal({
                   borderRadius="md"
                 />
                 <Box flex="1">
-                  <Text fontWeight="bold">{item.name}</Text>
-                  <Text fontSize="sm" color="gray.500">
-                    {item.quantity}x @ ${item.price.toFixed(2)}
+                  <Text fontWeight="bold" color="#28130b">
+                    {item.name}
                   </Text>
+                  <Flex align="center">
+                    <Text
+                      fontSize="sm"
+                      color="#af4c38"
+                      fontWeight="bold"
+                      mr={1}
+                    >
+                      {item.quantity}x
+                    </Text>
+                    <Text color="#c9bfbe" fontSize="sm" mr={1}>
+                      @ ${item.price.toFixed(2)}
+                    </Text>
+                  </Flex>
                 </Box>
-                <Text fontWeight="bold">
+                <Text fontWeight="bold" color="#28130b">
                   ${(item.price * item.quantity).toFixed(2)}
                 </Text>
               </HStack>
             ))}
             <Divider />
             <HStack justify="space-between">
-              <Text fontSize="lg" fontWeight="bold">
+              <Text fontSize="lg" fontWeight="bold" color="#28130b">
                 Order Total
               </Text>
-              <Text fontSize="lg" fontWeight="bold">
+              <Text fontSize="lg" fontWeight="bold" color="#28130b">
                 ${totalPrice.toFixed(2)}
               </Text>
             </HStack>

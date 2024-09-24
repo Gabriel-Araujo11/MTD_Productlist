@@ -59,17 +59,17 @@ export default function Cart() {
               pb={4}
             >
               <Flex direction="column">
-                <Text fontSize="md" fontWeight="bold">
+                <Text fontSize="md" fontWeight="bold" color="#28130b">
                   {item.name}
                 </Text>
                 <Flex align="center">
-                  <Text fontSize="sm" color="red.500" fontWeight="bold" mr={1}>
+                  <Text fontSize="sm" color="#af4c38" fontWeight="bold" mr={1}>
                     {item.quantity}x
                   </Text>
-                  <Text fontSize="sm" color="gray.500" mr={1}>
+                  <Text color="#c9bfbe" fontSize="sm" mr={1}>
                     @ ${item.price.toFixed(2)}
                   </Text>
-                  <Text fontSize="sm" fontWeight="bold">
+                  <Text fontSize="sm" fontWeight="bold" color="#beb1ac">
                     ${(item.price * item.quantity).toFixed(2)}
                   </Text>
                 </Flex>
@@ -91,10 +91,12 @@ export default function Cart() {
             </Flex>
           ))}
           <HStack justifyContent="space-between" mt={10}>
-            <Text size="md" color="gray.800">
+            <Text size="md" color="#28130b">
               Order Total:
             </Text>
-            <Text fontWeight="bold">${totalPrice.toFixed(2)}</Text>
+            <Text fontWeight="bold" color="#28130b">
+              ${totalPrice.toFixed(2)}
+            </Text>
           </HStack>
           <HStack
             mt={7}

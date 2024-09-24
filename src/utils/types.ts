@@ -24,6 +24,10 @@ export interface CartItem {
   quantity: number;
 }
 
+export interface ProductCardProps {
+  product: Product;
+}
+
 export interface OrderConfirmationModalProps {
   isOpen: boolean;
   onClose: () => void;

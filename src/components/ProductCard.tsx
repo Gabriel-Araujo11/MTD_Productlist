@@ -9,12 +9,8 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { useCart } from "@/hooks/useCart";
-import { Product } from "@/utils/types";
+import { ProductCardProps } from "@/utils/types";
 import Image from "next/image";
-
-interface ProductCardProps {
-  product: Product;
-}
 
 export default function ProductCard({ product }: ProductCardProps) {
   const { addToCart, isItemSelected } = useCart();
@@ -42,14 +38,14 @@ export default function ProductCard({ product }: ProductCardProps) {
   return (
     <Flex
       direction="column"
-      mt={5}
+      mt={{ base: 3, md: 5 }}
       mb={-20}
       textAlign="center"
       width={{ base: "100%", md: "260px" }}
       mx="auto"
     >
       <Box
-        p={4}
+        p={{ base: 0, md: 4 }}
         borderWidth="1px"
         borderRadius="lg"
         backgroundColor="white"
@@ -74,7 +70,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           display="flex"
           justifyContent="center"
           alignItems="center"
-          mt={-6}
+          mt={{ base: -10, md: -6 }}
         >
           {!isItemSelected(product.name) ? (
             <Button
@@ -89,7 +85,7 @@ export default function ProductCard({ product }: ProductCardProps) {
               colorScheme="white"
               size={{ base: "sm", md: "md" }}
               onClick={handleAddToCart}
-              color="black"
+              color="#28130b"
               borderRadius="25px"
               background="white"
               border="2px solid #cbbcba"
@@ -139,14 +135,18 @@ export default function ProductCard({ product }: ProductCardProps) {
       </Box>
       <Box textAlign="left">
         <Text
-          color="gray.600"
-          fontSize={{ base: "md", md: "lg" }}
+          color="#c4b8b4"
+          fontSize={{ base: "sm", md: "lg" }}
           mt={4}
           paddingTop="20px"
         >
           {product.category}
         </Text>
-        <Text fontWeight="bold" fontSize={{ base: "md", md: "lg" }}>
+        <Text
+          color="#28130b"
+          fontWeight="bold"
+          fontSize={{ base: "md", md: "lg" }}
+        >
           {product.name}
         </Text>
         <Text mb={4} fontSize={{ base: "sm", md: "md" }} color="orange.600">

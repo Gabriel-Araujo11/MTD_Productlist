@@ -18,7 +18,7 @@ const ProductList = () => {
   return (
     <Box paddingX={{ base: 4, md: 8 }} mt={5}>
       <Flex justifyContent="space-between" alignItems="center">
-        <Heading as="h2" size="lg">
+        <Heading as="h2" size="lg" color="#28130b">
           Desserts
         </Heading>
       </Flex>
