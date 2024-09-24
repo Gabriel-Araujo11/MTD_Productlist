@@ -70,7 +70,7 @@ export default function Cart() {
                     @ ${item.price.toFixed(2)}
                   </Text>
                   <Text fontSize="sm" fontWeight="bold">
-                    ${item.price * item.quantity}
+                    ${(item.price * item.quantity).toFixed(2)}
                   </Text>
                 </Flex>
               </Flex>
