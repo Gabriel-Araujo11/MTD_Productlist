@@ -16,15 +16,15 @@ interface ProductCardProps {
   product: Product;
 }
 
+//TODO: Resolver problema de typescript no isItemSelected
+
 export default function ProductCard({ product }: ProductCardProps) {
-  const { addToCart } = useCart();
-  const [isSelected, setIsSelected] = useState(false);
+  const { addToCart, isItemSelected } = useCart();
   const [quantity, setQuantity] = useState(1);
 
   const handleAddToCart = () => {
     const productWithQuantity = { ...product, quantity };
     addToCart(productWithQuantity);
-    setIsSelected(true);
   };
 
   const handleQuantityIncrease = () => {
@@ -55,7 +55,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         borderWidth="1px"
         borderRadius="lg"
         backgroundColor="white"
-        borderColor={isSelected ? "#c83b0e" : "gray.200"}
+        borderColor={isItemSelected(product.name) ? "#c83b0e" : "gray.200"}
         borderStyle="solid"
         position="relative"
         boxShadow="md"
@@ -78,7 +78,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           alignItems="center"
           mt={-6}
         >
-          {!isSelected ? (
+          {!isItemSelected(product.name) ? (
             <Button
               leftIcon={
                 <Image

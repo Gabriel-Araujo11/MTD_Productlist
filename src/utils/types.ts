@@ -16,9 +16,15 @@ export interface CartContextType {
   removeFromCart: (productName: string) => void;
   totalPrice: number;
   resetCart: () => void;
+  isItemSelected: (name: string) => void;
 }
 export interface CartItem {
   name: string;
   price: number;
   quantity: number;
+}
+
+export interface OrderConfirmationModalProps {
+  isOpen: boolean;
+  onClose: () => void;
 }

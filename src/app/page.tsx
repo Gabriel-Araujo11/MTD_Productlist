@@ -10,7 +10,7 @@ export default function Home() {
       direction={{ base: "column", md: "row" }}
       justify="space-between"
       p={20}
-      maxWidth="75vw"
+      // maxWidth="75vw"
       mx="auto"
       width="100%"
       mb={20}

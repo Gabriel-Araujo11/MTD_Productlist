@@ -41,6 +41,10 @@ export function CartProvider({ children }: CartProviderProps) {
     setCartItems([]);
   };
 
+  const isItemSelected = (name: string) => {
+    return cartItems?.some((item) => item.name === name);
+  };
+
   return (
     <CartContext.Provider
       value={{
@@ -49,6 +53,7 @@ export function CartProvider({ children }: CartProviderProps) {
         removeFromCart,
         totalPrice,
         resetCart,
+        isItemSelected,
       }}
     >
       {children}

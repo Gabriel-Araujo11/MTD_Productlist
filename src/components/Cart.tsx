@@ -9,9 +9,16 @@ import {
 } from "@chakra-ui/react";
 import { useCart } from "@/hooks/useCart";
 import Image from "next/image";
+import { useState } from "react";
+import OrderConfirmationModal from "./Modal";
 
 export default function Cart() {
   const { cartItems, removeFromCart, totalPrice, resetCart } = useCart();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleConfirmOrder = () => {
+    setIsModalOpen(true);
+  };
 
   return (
     <Box
@@ -96,10 +103,17 @@ export default function Cart() {
             p={4}
             borderRadius="10px"
           >
+            <Image
+              src="/assets/images/icon-carbon-neutral.svg"
+              alt="Carbon Neutral Icon"
+              width={20}
+              height={20}
+            />
             <Text fontSize="16px">
               This is a <strong>carbon-neutral</strong> delivery
             </Text>
           </HStack>
+
           <Button justifyContent="right" onClick={resetCart}>
             Reset Cart
           </Button>
@@ -110,9 +124,14 @@ export default function Cart() {
             color="white"
             borderRadius="20px"
             _hover="black"
+            onClick={handleConfirmOrder}
           >
             Confirm Order
           </Button>
+          <OrderConfirmationModal
+            isOpen={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
+          />
         </>
       )}
     </Box>
